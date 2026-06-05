@@ -21,7 +21,7 @@
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--text); line-height: 1.7; }
+    body { margin: 0; min-height: 100vh; background: #ffffff; color: var(--text); line-height: 1.7; }
     img { max-width: 100%; display: block; }
     button, a { font: inherit; }
     a { color: inherit; }
@@ -31,8 +31,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(255,255,255,0.96);
-      backdrop-filter: blur(12px);
+      background: #ffffff;
       border-bottom: 1px solid rgba(11,47,99,0.08);
     }
     .nav-wrap {
@@ -44,8 +43,7 @@
       justify-content: space-between;
       gap: 18px;
     }
-    .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.2rem; letter-spacing: -0.03em; }
-    .brand img { height: 42px; width: auto; display: block; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.25rem; letter-spacing: -0.03em; color: var(--text); }
     .brand span { color: var(--accent); }
     nav { display: flex; align-items: center; gap: 24px; }
     nav a { text-decoration: none; color: var(--text); font-weight: 600; transition: color 0.2s ease; }
@@ -58,27 +56,27 @@
       display: grid;
       align-items: center;
       padding: 96px 24px 72px;
-      background: linear-gradient(180deg, rgba(11,47,99,0.94), rgba(11,47,99,0.72)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      background: linear-gradient(180deg, rgba(11,47,99,0.84), rgba(11,47,99,0.50)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       color: #ffffff;
     }
     .hero-inner {
-      max-width: 920px;
+      max-width: 900px;
       margin: 0 auto;
       text-align: center;
       display: grid;
       gap: 20px;
     }
-    .hero h1 { font-size: clamp(2.3rem, 5vw, 4rem); line-height: 1.02; margin-bottom: 18px; }
-    .hero p { max-width: 720px; margin: 0 auto 32px; font-size: 1.05rem; color: rgba(255,255,255,0.9); }
+    .hero h1 { font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.02; margin-bottom: 18px; }
+    .hero p { max-width: 720px; margin: 0 auto 32px; font-size: 1.05rem; color: rgba(255,255,255,0.92); }
     .hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
     .btn { display: inline-flex; align-items: center; justify-content: center; padding: 15px 28px; border-radius: 999px; font-weight: 700; text-decoration: none; transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease; }
     .btn-primary { background: var(--accent); color: #0b2f63; }
     .btn-secondary { background: rgba(255,255,255,0.14); color: #ffffff; border: 1px solid rgba(255,255,255,0.2); }
     .btn:hover { transform: translateY(-1px); }
 
-    section { max-width: 1180px; margin: 0 auto; padding: 80px 24px; }
-    section.light { background: var(--surface-alt); }
-    section#contact { background: var(--surface-alt); }
+    section { max-width: 1180px; margin: 0 auto; padding: 80px 24px; scroll-margin-top: 96px; }
+    section.light { background: #f7f9fc; }
+    section#contact { background: #f7f9fc; }
     .section-title { margin-bottom: 18px; font-size: clamp(2rem, 3vw, 2.8rem); text-align: center; }
     .section-copy { max-width: 760px; margin: 0 auto 48px; text-align: center; color: var(--muted); }
     .section-content { display: grid; gap: 32px; }
@@ -158,10 +156,7 @@
   <div class="page-container">
     <header>
       <div class="nav-wrap">
-        <a class="brand" href="#home">
-          <img src="logo.svg" alt="NiceMon logo" />
-          <span>Nice<span>Mon</span></span>
-        </a>
+        <a class="brand" href="#home">Nice<span>Mon</span></a>
         <nav id="main-nav">
           <a href="#home">Home</a>
           <a href="#about">About</a>
