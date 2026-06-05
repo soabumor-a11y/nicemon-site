@@ -5,112 +5,277 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NiceMon Information and Research Consult</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      color-scheme: light;
+      --bg: #f4f7fb;
+      --surface: #ffffff;
+      --surface-alt: #f7f9fe;
+      --text: #0b2f63;
+      --muted: #64708a;
+      --accent: #d4a017;
+      --accent-dark: #b8860b;
+      --border: rgba(11,47,99,0.08);
+      --shadow: 0 20px 50px rgba(11,47,99,0.12);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { font-family: Arial, sans-serif; color: #0b2f63; background: #f5f7fb; }
-    header { background: #ffffff; padding: 18px 8%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 12px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000; }
-    .logo { font-size: 28px; font-weight: bold; color: #0b2f63; }
-    .logo span { color: #d4a017; }
-    nav a { margin-left: 18px; text-decoration: none; color: #0b2f63; font-weight: bold; font-size: 15px; }
-    nav a:hover { color: #d4a017; }
-    .hero { min-height: 85vh; background: linear-gradient(rgba(11,47,99,0.82), rgba(11,47,99,0.82)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; color: #ffffff; display: flex; align-items: center; text-align: center; }
-    .hero-content { max-width: 900px; margin: auto; padding: 120px 0; }
-    .hero h1 { font-size: 48px; line-height: 1.1; margin-bottom: 20px; }
-    .hero p { font-size: 20px; margin-bottom: 28px; color: #f1f5fb; }
-    .btn { display: inline-block; padding: 14px 28px; border-radius: 8px; background: #d4a017; color: white; text-decoration: none; font-weight: bold; margin: 6px 6px 0 0; }
-    .btn-outline { background: transparent; border: 2px solid white; }
-    section { padding: 80px 8%; }
-    h2 { font-size: 36px; text-align: center; color: #0b2f63; margin-bottom: 18px; }
-    .section-subtitle { text-align: center; max-width: 760px; margin: 0 auto 40px; color: #5d6f86; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; }
-    .card { background: white; border-radius: 18px; padding: 28px; box-shadow: 0 8px 30px rgba(11,47,99,0.08); }
-    .card h3 { color: #d4a017; margin-bottom: 14px; }
-    .card p { color: #4b5b7a; line-height: 1.7; }
-    .contact-section { background: #eef3fb; }
-    .contact-card { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 1100px; margin: auto; }
-    .contact-card .info, .contact-card .form { background: white; padding: 32px; border-radius: 18px; box-shadow: 0 10px 30px rgba(11,47,99,0.08); }
-    .contact-card .info h3, .contact-card .form h3 { margin-bottom: 18px; color: #0b2f63; }
-    .contact-card .info p { color: #5d6f86; margin-bottom: 18px; }
-    .contact-card .contact-item { margin-bottom: 14px; color: #0b2f63; }
-    .contact-card input, .contact-card textarea, .contact-card select { width: 100%; padding: 14px 16px; margin-bottom: 16px; border: 1px solid #d8dee8; border-radius: 12px; font-size: 15px; color: #0b2f63; background: #fbfcff; }
-    .contact-card textarea { min-height: 140px; resize: vertical; }
-    .contact-card button { width: 100%; padding: 16px; background: #0b2f63; color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; transition: 0.25s ease; }
-    .contact-card button:hover { background: #143a6f; }
-    footer { text-align: center; padding: 24px 8%; color: #64708a; font-size: 14px; }
-    .whatsapp-float { position: fixed; right: 20px; bottom: 20px; background: #25d366; color: white; padding: 14px 18px; border-radius: 999px; text-decoration: none; font-weight: bold; box-shadow: 0 10px 30px rgba(0,0,0,0.18); }
-    @media (max-width: 900px) { header { flex-wrap: wrap; } nav { width: 100%; margin-top: 16px; text-align: center; } nav a { margin: 8px 10px 0; } .hero { padding-top: 40px; } .contact-card { grid-template-columns: 1fr; } }
+    body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--text); line-height: 1.7; }
+    img { max-width: 100%; display: block; }
+    button, a { font: inherit; }
+    a { color: inherit; }
+    .page-container { overflow-x: hidden; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(11,47,99,0.08);
+    }
+    .nav-wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.2rem; letter-spacing: -0.03em; }
+    .brand span { color: var(--accent); }
+    nav { display: flex; align-items: center; gap: 24px; }
+    nav a { text-decoration: none; color: var(--text); font-weight: 600; transition: color 0.2s ease; }
+    nav a:hover { color: var(--accent); }
+    .menu-toggle { display: none; background: none; border: none; cursor: pointer; color: var(--text); }
+    .menu-toggle svg { width: 24px; height: 24px; }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      align-items: center;
+      padding: 100px 24px 80px;
+      background: linear-gradient(180deg, rgba(11,47,99,0.94), rgba(11,47,99,0.70)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: #ffffff;
+    }
+    .hero-inner {
+      max-width: 980px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .hero h1 { font-size: clamp(2.5rem, 5vw, 4.4rem); line-height: 1.02; margin-bottom: 24px; }
+    .hero p { max-width: 720px; margin: 0 auto 32px; font-size: 1.05rem; color: rgba(255,255,255,0.9); }
+    .hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 15px 28px; border-radius: 999px; font-weight: 700; text-decoration: none; transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease; }
+    .btn-primary { background: var(--accent); color: #0b2f63; }
+    .btn-secondary { background: rgba(255,255,255,0.14); color: #ffffff; border: 1px solid rgba(255,255,255,0.2); }
+    .btn:hover { transform: translateY(-1px); }
+
+    section { max-width: 1180px; margin: 0 auto; padding: 80px 24px; }
+    .section-title { margin-bottom: 18px; font-size: clamp(2rem, 3vw, 2.8rem); text-align: center; }
+    .section-copy { max-width: 760px; margin: 0 auto 48px; text-align: center; color: var(--muted); }
+
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+    .card { background: var(--surface); border-radius: 24px; padding: 32px; box-shadow: var(--shadow); border: 1px solid var(--border); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 30px 60px rgba(11,47,99,0.12); }
+    .card h3 { margin-bottom: 18px; color: var(--accent); font-size: 1.3rem; }
+    .card p { color: var(--muted); line-height: 1.8; }
+
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 18px; margin-top: 24px; }
+    .stat { background: rgba(212,160,23,0.08); border-radius: 20px; padding: 24px; text-align: center; }
+    .stat strong { display: block; font-size: 2rem; color: var(--text); margin-bottom: 8px; }
+    .stat span { color: var(--muted); }
+
+    .feature-block { display: grid; grid-template-columns: 1.1fr .9fr; gap: 36px; align-items: center; }
+    .feature-content { max-width: 560px; }
+    .feature-content h3 { font-size: 2rem; margin-bottom: 18px; }
+    .feature-content p { color: var(--muted); margin-bottom: 24px; }
+    .feature-list { display: grid; gap: 16px; }
+    .feature-item { display: flex; gap: 14px; align-items: flex-start; }
+    .feature-item span { font-size: 1.2rem; line-height: 1; color: var(--accent); margin-top: 4px; }
+    .feature-item p { margin: 0; color: var(--text); }
+    .feature-visual { border-radius: 28px; overflow: hidden; box-shadow: var(--shadow); }
+
+    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+    .portfolio-card { border-radius: 22px; overflow: hidden; box-shadow: var(--shadow); background: var(--surface); }
+    .portfolio-card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+    .portfolio-card .portfolio-copy { padding: 26px; }
+    .portfolio-card h3 { margin-bottom: 12px; color: var(--accent); }
+    .portfolio-card p { color: var(--muted); }
+
+    .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; }
+    .process-step { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 28px; box-shadow: var(--shadow); }
+    .process-step h4 { margin-bottom: 14px; color: var(--accent); }
+    .process-step p { color: var(--muted); }
+
+    .contact-panel { display: grid; grid-template-columns: 1.05fr .95fr; gap: 30px; align-items: stretch; }
+    .contact-card { border-radius: 24px; padding: 36px; background: var(--surface); box-shadow: var(--shadow); border: 1px solid var(--border); }
+    .contact-card h3 { margin-bottom: 20px; }
+    .contact-card p { margin-bottom: 22px; color: var(--muted); }
+    .contact-info { display: grid; gap: 16px; }
+    .contact-item { display: grid; gap: 6px; }
+    .contact-item strong { color: var(--accent); }
+    .contact-form input, .contact-form textarea, .contact-form select { width: 100%; border: 1px solid #dfe5ef; border-radius: 14px; padding: 14px 16px; background: #fff; color: var(--text); transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+    .contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus { border-color: rgba(212,160,23,0.6); outline: none; box-shadow: 0 0 0 5px rgba(212,160,23,0.12); }
+    .contact-form textarea { min-height: 150px; resize: vertical; }
+    .contact-form button { width: 100%; border: none; padding: 16px; border-radius: 14px; background: var(--accent); color: #0b2f63; font-weight: 700; cursor: pointer; transition: transform 0.2s ease, background 0.2s ease; }
+    .contact-form button:hover { background: var(--accent-dark); transform: translateY(-1px); }
+    .contact-note { color: var(--muted); font-size: 0.95rem; margin-top: 12px; }
+    .small-badge { display: inline-flex; align-items: center; justify-content: center; padding: 8px 14px; border-radius: 999px; background: rgba(212,160,23,0.08); color: var(--accent); font-size: 0.95rem; font-weight: 700; margin-bottom: 18px; }
+
+    footer { padding: 32px 24px; text-align: center; color: var(--muted); font-size: 0.95rem; }
+    .whatsapp-float { position: fixed; right: 20px; bottom: 20px; z-index: 90; background: #25d366; color: white; padding: 14px 20px; border-radius: 999px; text-decoration: none; font-weight: 700; box-shadow: 0 18px 40px rgba(0,0,0,0.18); }
+
+    @media (max-width: 960px) {
+      .feature-block, .contact-panel, .contact-card, .process-grid { grid-template-columns: 1fr; }
+      .contact-card { padding: 28px; }
+      section { padding: 60px 18px; }
+    }
+    @media (max-width: 760px) {
+      .nav-wrap { padding: 16px 18px; }
+      nav { position: fixed; inset: 74px 18px auto auto; right: 18px; top: 72px; background: rgba(255,255,255,0.97); border: 1px solid rgba(11,47,99,0.08); box-shadow: var(--shadow); border-radius: 18px; padding: 18px; flex-direction: column; gap: 14px; display: none; width: calc(100% - 36px); max-width: 320px; }
+      nav.open { display: flex; }
+      .menu-toggle { display: inline-flex; }
+      .hero { padding-top: 90px; }
+      .hero-inner { padding-top: 10px; }
+      header { padding: 16px 18px; }
+      .hero-actions { flex-direction: column; align-items: center; }
+      .card, .process-step { padding: 24px; }
+      .section-title { font-size: 2rem; }
+    }
   </style>
 </head>
 <body>
-<header>
-  <div class="logo">Nice<span>Mon</span></div>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-<section id="home" class="hero">
-  <div class="hero-content">
-    <h1>NiceMon Information and Research Consult</h1>
-    <p>Professional research, data analysis, academic consultancy, and evidence-based solutions for students, institutions, and organizations.</p>
-    <a class="btn" href="#services">Explore Services</a>
-    <a class="btn btn-outline" href="#contact">Get in Touch</a>
+  <div class="page-container">
+    <header>
+      <div class="nav-wrap">
+        <a class="brand" href="#home">Nice<span>Mon</span></a>
+        <nav id="main-nav">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#works">Works</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <section id="home" class="hero">
+      <div class="hero-inner">
+        <p class="small-badge">Research-led consulting for students, institutions, and professionals</p>
+        <h1>Professional research, data analysis, and consultancy support that helps you succeed.</h1>
+        <p>NiceMon delivers polished proposals, thesis support, data-driven insights, and research-ready reports for academic and business clients.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Request a quote</a>
+          <a class="btn btn-secondary" href="#services">View services</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-title">About NiceMon</div>
+      <p class="section-copy">NiceMon Information and Research Consult combines academic knowledge, research skills, and practical analysis to support students, researchers, and organisations with professional, timely, and confidential work.</p>
+      <div class="cards-grid">
+        <div class="card"><h3>Trusted experience</h3><p>We help clients deliver high-quality proposals, dissertations, academic reports, and data projects with clarity and confidence.</p></div>
+        <div class="card"><h3>Focused support</h3><p>From literature reviews to statistical analysis, we offer structured research assistance tailored to your needs and deadlines.</p></div>
+        <div class="card"><h3>Academic excellence</h3><p>Every deliverable is reviewed for quality, consistency, and practical use so your project is both credible and actionable.</p></div>
+      </div>
+    </section>
+
+    <section id="services" class="light">
+      <div class="section-title">Services delivered with precision</div>
+      <p class="section-copy">We support academic and institutional research with a full range of consulting services, from topic development to final reporting.</p>
+      <div class="cards-grid">
+        <div class="card"><h3>Research proposal writing</h3><p>Topic selection, problem statements, objectives, methodology, and strong proposal structure.</p></div>
+        <div class="card"><h3>Thesis and dissertation support</h3><p>Chapter drafts, literature review, methodology, results, discussion, and formatting.</p></div>
+        <div class="card"><h3>Data analysis</h3><p>SPSS, Excel, STATA, regression, correlation, ANOVA, chi-square, and clear output interpretation.</p></div>
+        <div class="card"><h3>Survey design</h3><p>Questionnaire development, field planning, Google Forms/KoboToolbox setup, and data capture design.</p></div>
+      </div>
+    </section>
+
+    <section id="works">
+      <div class="section-title">Proof of our work</div>
+      <p class="section-copy">Examples of recent research and consultancy work that demonstrate our experience and professionalism.</p>
+      <div class="portfolio-grid">
+        <article class="portfolio-card">
+          <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=900&q=80" alt="Solar research project" />
+          <div class="portfolio-copy"><h3>Solar adoption research</h3><p>Study of household energy choices and solar acceptance across diverse communities.</p></div>
+        </article>
+        <article class="portfolio-card">
+          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=900&q=80" alt="Data analysis" />
+          <div class="portfolio-copy"><h3>Data analysis projects</h3><p>Quantitative and qualitative work supporting reports, charts, and evidence-based conclusions.</p></div>
+        </article>
+        <article class="portfolio-card">
+          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80" alt="Academic research" />
+          <div class="portfolio-copy"><h3>Academic research support</h3><p>Literature review, methodology, and academic writing tailored to university standards.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="section-title">Our process</div>
+      <p class="section-copy">A clear, reliable process that keeps work on track and aligned with your goals.</p>
+      <div class="process-grid">
+        <div class="process-step"><h4>01. Consultation</h4><p>We listen to your research topic, deadline, and expected deliverables before planning the work.</p></div>
+        <div class="process-step"><h4>02. Planning</h4><p>We define methodology, data sources, and project structure for a strong and coherent output.</p></div>
+        <div class="process-step"><h4>03. Execution</h4><p>Writing, analysis, cleaning, and formatting are completed with attention to detail and accuracy.</p></div>
+        <div class="process-step"><h4>04. Delivery</h4><p>We deliver polished documents, charts, and reports that are ready for academic or institutional review.</p></div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+      <div class="section-title">Talk to us</div>
+      <p class="section-copy">Send your project details and we’ll get back to you with a tailored plan and quote.</p>
+      <div class="contact-panel">
+        <div class="contact-card">
+          <div class="contact-info">
+            <div class="contact-item"><strong>Company</strong><span>NiceMon Information and Research Consult</span></div>
+            <div class="contact-item"><strong>Location</strong><span>Somanya, Eastern Region, Ghana</span></div>
+            <div class="contact-item"><strong>Phone / WhatsApp</strong><span>+233 506 305 723</span></div>
+            <div class="contact-item"><strong>Email</strong><span>nicemonconsult@gmail.com</span></div>
+          </div>
+          <p>We are ready to support your research project with professional guidance, data analysis, and academic writing assistance.</p>
+          <a class="btn btn-primary" href="https://wa.me/233506305723" target="_blank">Chat on WhatsApp</a>
+        </div>
+        <div class="contact-card">
+          <h3>Request a service</h3>
+          <form class="contact-form" action="https://formsubmit.co/nicemonconsult@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="New Service Request from NiceMon Website" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="text" name="Full Name" placeholder="Full Name" required />
+            <input type="email" name="Email Address" placeholder="Email Address" required />
+            <input type="tel" name="Phone Number" placeholder="Phone Number / WhatsApp" />
+            <select name="Service Needed" required>
+              <option value="">Service needed</option>
+              <option value="Research Proposal Writing">Research Proposal Writing</option>
+              <option value="Thesis or Dissertation Support">Thesis or Dissertation Support</option>
+              <option value="Data Analysis">Data Analysis</option>
+              <option value="Survey Design">Survey Design</option>
+              <option value="Transcription">Transcription</option>
+              <option value="Research Consultancy">Research Consultancy</option>
+              <option value="Other">Other</option>
+            </select>
+            <input type="text" name="Project Topic" placeholder="Project Topic / Brief Title" />
+            <textarea name="Message" placeholder="Briefly describe your request" required></textarea>
+            <button type="submit">Submit Request</button>
+            <p class="contact-note">We respect your privacy and respond promptly to every request.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <a class="whatsapp-float" href="https://wa.me/233506305723" target="_blank">Chat on WhatsApp</a>
+    <footer>&copy; 2026 NiceMon Information and Research Consult. All rights reserved.</footer>
   </div>
-</section>
-<section id="about">
-  <h2>About NiceMon</h2>
-  <p class="section-subtitle">We support research, academic projects, data analysis, and information management with professionalism and clarity.</p>
-  <div class="grid">
-    <div class="card">
-      <h3>Who We Are</h3>
-      <p>NiceMon is a consultancy focused on helping students, researchers, and organizations complete research work and transform data into insights.</p>
-    </div>
-    <div class="card">
-      <h3>What We Do</h3>
-      <p>We provide proposal development, thesis and dissertation support, data analysis, survey design, report writing, and research consulting.</p>
-    </div>
-  </div>
-</section>
-<section id="services" class="light">
-  <h2>Services We Offer</h2>
-  <p class="section-subtitle">From research proposals to final reports, we deliver quality output tailored to your academic or business needs.</p>
-  <div class="grid">
-    <div class="card"><h3>Research Proposals</h3><p>Support with topic selection, research questions, methodology, and drafting.</p></div>
-    <div class="card"><h3>Thesis Assistance</h3><p>Help with chapters, literature reviews, data analysis, and editing.</p></div>
-    <div class="card"><h3>Data Analysis</h3><p>Statistical analysis, charts, tables, and insights using SPSS, Excel, and other tools.</p></div>
-    <div class="card"><h3>Survey Design</h3><p>Questionnaire creation, data collection planning, and form design.</p></div>
-  </div>
-</section>
-<section id="contact" class="contact-section">
-  <h2>Contact Us</h2>
-  <p class="section-subtitle">Send a message about your research project or consultancy need and we will respond quickly.</p>
-  <div class="contact-card">
-    <div class="info">
-      <h3>Contact Information</h3>
-      <p>NiceMon Information and Research Consult</p>
-      <p class="contact-item"><strong>Location:</strong> Somanya, Eastern Region, Ghana</p>
-      <p class="contact-item"><strong>Phone/WhatsApp:</strong> +233 506 305 723</p>
-      <p class="contact-item"><strong>Email:</strong> nicemonconsult@gmail.com</p>
-      <a class="btn" href="https://wa.me/233506305723" target="_blank">Chat on WhatsApp</a>
-    </div>
-    <div class="form">
-      <h3>Send a Request</h3>
-      <form action="https://formsubmit.co/nicemonconsult@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="New Service Request from NiceMon Website" />
-        <input type="hidden" name="_captcha" value="false" />
-        <input type="text" name="Full Name" placeholder="Full Name" required />
-        <input type="email" name="Email Address" placeholder="Email Address" required />
-        <input type="tel" name="Phone Number" placeholder="Phone Number / WhatsApp" />
-        <input type="text" name="Project Topic" placeholder="Project Topic / Brief Title" />
-        <textarea name="Message" placeholder="Briefly describe your request" required></textarea>
-        <button type="submit">Submit Request</button>
-      </form>
-    </div>
-  </div>
-</section>
-<a class="whatsapp-float" href="https://wa.me/233506305723" target="_blank">WhatsApp</a>
-<footer><p>&copy; 2026 NiceMon Information and Research Consult. All Rights Reserved.</p></footer>
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const mainNav = document.getElementById('main-nav');
+    menuToggle.addEventListener('click', () => mainNav.classList.toggle('open'));
+  </script>
 </body>
 </html>
