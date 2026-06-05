@@ -77,8 +77,12 @@
     .btn:hover { transform: translateY(-1px); }
 
     section { max-width: 1180px; margin: 0 auto; padding: 80px 24px; }
+    section.light { background: var(--surface-alt); }
+    section#contact { background: var(--surface-alt); }
     .section-title { margin-bottom: 18px; font-size: clamp(2rem, 3vw, 2.8rem); text-align: center; }
     .section-copy { max-width: 760px; margin: 0 auto 48px; text-align: center; color: var(--muted); }
+    .section-content { display: grid; gap: 32px; }
+    .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
 
     .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
     .card { background: var(--surface); border-radius: 24px; padding: 32px; box-shadow: var(--shadow); border: 1px solid var(--border); transition: transform 0.25s ease, box-shadow 0.25s ease; }
@@ -170,6 +174,7 @@
         </button>
       </div>
     </header>
+    <main>
 
     <section id="home" class="hero">
       <div class="hero-inner">
@@ -186,10 +191,12 @@
     <section id="about">
       <div class="section-title">About NiceMon</div>
       <p class="section-copy">NiceMon Information and Research Consult combines academic knowledge, research skills, and practical analysis to support students, researchers, and organisations with professional, timely, and confidential work.</p>
-      <div class="cards-grid">
-        <div class="card"><h3>Trusted experience</h3><p>We help clients deliver high-quality proposals, dissertations, academic reports, and data projects with clarity and confidence.</p></div>
-        <div class="card"><h3>Focused support</h3><p>From literature reviews to statistical analysis, we offer structured research assistance tailored to your needs and deadlines.</p></div>
-        <div class="card"><h3>Academic excellence</h3><p>Every deliverable is reviewed for quality, consistency, and practical use so your project is both credible and actionable.</p></div>
+      <div class="section-content">
+        <div class="about-grid">
+          <div class="card"><h3>Trusted experience</h3><p>We help clients deliver high-quality proposals, dissertations, academic reports, and data projects with clarity and confidence.</p></div>
+          <div class="card"><h3>Focused support</h3><p>From literature reviews to statistical analysis, we offer structured research assistance tailored to your needs and deadlines.</p></div>
+          <div class="card"><h3>Academic excellence</h3><p>Every deliverable is reviewed for quality, consistency, and practical use so your project is both credible and actionable.</p></div>
+        </div>
       </div>
     </section>
 
@@ -240,7 +247,7 @@
 
     <section id="contact" class="contact-section">
       <div class="section-title">Talk to us</div>
-      <p class="section-copy">Send your project details and we�ll get back to you with a tailored plan and quote.</p>
+      <p class="section-copy">Send your project details and we’ll get back to you with a tailored plan and quote.</p>
       <div class="contact-panel">
         <div class="contact-card">
           <div class="contact-info">
@@ -281,6 +288,7 @@
 
     <a class="whatsapp-float" href="https://wa.me/233506305723" target="_blank">Chat on WhatsApp</a>
     <footer>&copy; 2026 NiceMon Information and Research Consult. All rights reserved.</footer>
+    </main>
   </div>
   <script>
     const menuToggle = document.getElementById('menu-toggle');
